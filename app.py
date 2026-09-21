@@ -5,8 +5,16 @@ import hashlib
 
 app = Flask(__name__)
 
-# Chave usada para proteger a sessão do usuário
-app.secret_key = "silver-mind-chave-teste-2026"
+# =========================================
+# CONFIGURAÇÕES
+# =========================================
+
+# No Render, vamos usar uma variável de ambiente.
+# Se ela não existir, usa essa chave apenas para testes locais.
+app.secret_key = os.environ.get(
+    "SECRET_KEY",
+    "silver-mind-chave-teste-2026"
+)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATABASE = os.path.join(BASE_DIR, "silvermind.db")
@@ -38,6 +46,15 @@ def criar_banco():
     conexao.close()
 
 
+# IMPORTANTE:
+# O Render inicia o Flask através do Gunicorn.
+# Nesse caso, o bloco "if __name__ == '__main__'"
+# não é executado.
+#
+# Por isso o banco precisa ser criado aqui.
+criar_banco()
+
+
 # =========================================
 # CRIPTOGRAFIA DA SENHA
 # =========================================
@@ -47,13 +64,20 @@ def criar_hash_senha(senha):
 
 
 # =========================================
-# PÁGINAS
+# PÁGINA PRINCIPAL
 # =========================================
 
 @app.route("/")
 def inicio():
-    return send_from_directory(BASE_DIR, "index.html")
+    return send_from_directory(
+        BASE_DIR,
+        "index.html"
+    )
 
+
+# =========================================
+# PÁGINAS HTML
+# =========================================
 
 @app.route("/pages/<path:arquivo>")
 def paginas(arquivo):
@@ -63,6 +87,10 @@ def paginas(arquivo):
     )
 
 
+# =========================================
+# ASSETS
+# =========================================
+
 @app.route("/assets/<path:arquivo>")
 def assets(arquivo):
     return send_from_directory(
@@ -70,6 +98,10 @@ def assets(arquivo):
         arquivo
     )
 
+
+# =========================================
+# CSS
+# =========================================
 
 @app.route("/css/<path:arquivo>")
 def css(arquivo):
@@ -79,11 +111,39 @@ def css(arquivo):
     )
 
 
+# =========================================
+# JAVASCRIPT
+# =========================================
+
 @app.route("/js/<path:arquivo>")
 def js(arquivo):
     return send_from_directory(
         os.path.join(BASE_DIR, "js"),
         arquivo
+    )
+
+
+# =========================================
+# VÍDEOS
+# =========================================
+
+@app.route("/videos/<path:arquivo>")
+def videos(arquivo):
+    return send_from_directory(
+        os.path.join(BASE_DIR, "videos"),
+        arquivo
+    )
+
+
+# =========================================
+# FAVICON
+# =========================================
+
+@app.route("/favicon.ico")
+def favicon():
+    return send_from_directory(
+        BASE_DIR,
+        "favicon.ico"
     )
 
 
@@ -96,16 +156,24 @@ def cadastro():
 
     dados = request.get_json()
 
+    if not dados:
+        return jsonify({
+            "sucesso": False,
+            "mensagem": "Dados inválidos."
+        }), 400
+
     nome = dados.get("nome", "").strip()
     email = dados.get("email", "").strip().lower()
     senha = dados.get("senha", "")
 
+    # Verifica campos obrigatórios
     if not nome or not email or not senha:
         return jsonify({
             "sucesso": False,
             "mensagem": "Preencha todos os campos."
         }), 400
 
+    # Verifica tamanho mínimo da senha
     if len(senha) < 6:
         return jsonify({
             "sucesso": False,
@@ -114,8 +182,13 @@ def cadastro():
 
     conexao = conectar_banco()
 
+    # Verifica se o e-mail já existe
     usuario_existente = conexao.execute(
-        "SELECT id FROM usuarios WHERE email = ?",
+        """
+        SELECT id
+        FROM usuarios
+        WHERE email = ?
+        """,
         (email,)
     ).fetchone()
 
@@ -127,8 +200,10 @@ def cadastro():
             "mensagem": "Este e-mail já possui uma conta."
         }), 409
 
+    # Cria hash da senha
     senha_hash = criar_hash_senha(senha)
 
+    # Salva usuário
     conexao.execute(
         """
         INSERT INTO usuarios (nome, email, senha)
@@ -155,19 +230,28 @@ def login():
 
     dados = request.get_json()
 
+    if not dados:
+        return jsonify({
+            "sucesso": False,
+            "mensagem": "Dados inválidos."
+        }), 400
+
     email = dados.get("email", "").strip().lower()
     senha = dados.get("senha", "")
 
+    # Verifica campos
     if not email or not senha:
         return jsonify({
             "sucesso": False,
             "mensagem": "Digite seu e-mail e sua senha."
         }), 400
 
+    # Cria hash da senha digitada
     senha_hash = criar_hash_senha(senha)
 
     conexao = conectar_banco()
 
+    # Procura usuário
     usuario = conexao.execute(
         """
         SELECT id, nome, email
@@ -179,12 +263,14 @@ def login():
 
     conexao.close()
 
+    # Usuário não encontrado
     if not usuario:
         return jsonify({
             "sucesso": False,
             "mensagem": "E-mail ou senha incorretos."
         }), 401
 
+    # Salva informações na sessão
     session["usuario_id"] = usuario["id"]
     session["usuario_nome"] = usuario["nome"]
     session["usuario_email"] = usuario["email"]
@@ -197,7 +283,7 @@ def login():
 
 
 # =========================================
-# USUÁRIO LOGADO
+# VERIFICAR USUÁRIO LOGADO
 # =========================================
 
 @app.route("/api/usuario")
@@ -231,12 +317,13 @@ def logout():
 
 
 # =========================================
-# PROTEÇÃO DA ÁREA DO ALUNO
+# ÁREA DO ALUNO
 # =========================================
 
 @app.route("/aluno")
 def area_aluno():
 
+    # Verifica se existe usuário logado
     if "usuario_id" not in session:
         return redirect("/pages/login.html")
 
@@ -247,12 +334,10 @@ def area_aluno():
 
 
 # =========================================
-# INICIAR SISTEMA
+# INICIAR SISTEMA LOCAL
 # =========================================
 
 if __name__ == "__main__":
-
-    criar_banco()
 
     print("")
     print("======================================")
@@ -267,5 +352,5 @@ if __name__ == "__main__":
     app.run(
         host="0.0.0.0",
         port=5000,
-        debug=True
+        debug=False
     )
