@@ -1,0 +1,633 @@
+/* =========================================
+   SILVER MIND
+   RESPONSIVE.CSS
+========================================= */
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .container {
+        width: min(100% - 48px, 900px);
+    }
+
+
+    /* HEADER */
+
+    .main-nav {
+        gap: 18px;
+    }
+
+
+    /* HERO */
+
+    .hero-container {
+        width: min(100% - 56px, 900px);
+    }
+
+
+    .hero h1 {
+        font-size: clamp(60px, 9vw, 90px);
+    }
+
+
+    /* INTRO */
+
+    .intro-grid {
+        grid-template-columns: 70px 1fr;
+        gap: 35px;
+    }
+
+
+    .intro-text {
+        grid-column: 2;
+    }
+
+
+    /* SOBRE */
+
+    .purpose-block {
+        gap: 50px;
+    }
+
+
+    /* QUEM SOU */
+
+    .who-content {
+        gap: 60px;
+    }
+
+
+    /* CURSOS */
+
+    .courses-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+
+    .courses-grid .course-card:last-child {
+        grid-column: 1 / -1;
+        max-width: calc(50% - 9px);
+    }
+
+
+    /* COMO FUNCIONA */
+
+    .how-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+
+    .how-card:nth-child(2) {
+        border-right: 0;
+    }
+
+
+    .how-card:nth-child(3),
+    .how-card:nth-child(4) {
+        border-top: 1px solid var(--border-light);
+    }
+
+
+    /* ALUNO */
+
+    .student-box {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .container {
+        width: calc(100% - 40px);
+    }
+
+
+    /* HEADER */
+
+    .site-header {
+        padding: 22px 0;
+    }
+
+
+    .site-logo {
+        width: 90px;
+    }
+
+
+    .main-nav {
+        gap: 12px;
+    }
+
+
+    .main-nav a:not(.nav-login) {
+        display: none;
+    }
+
+
+    .main-nav .nav-login {
+        padding: 10px 16px;
+
+        font-size: 9px;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        min-height: 100svh;
+    }
+
+
+    .hero-container {
+        width: calc(100% - 40px);
+
+        min-height: 100svh;
+
+        padding-top: 130px;
+        padding-bottom: 65px;
+
+        align-items: center;
+    }
+
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+
+    .eyebrow {
+        margin-bottom: 22px;
+
+        font-size: 9px;
+    }
+
+
+    .hero h1 {
+        max-width: 100%;
+
+        font-size: clamp(48px, 14vw, 72px);
+
+        line-height: .9;
+
+        letter-spacing: -.07em;
+    }
+
+
+    .hero p {
+        margin-top: 28px;
+
+        font-size: 15px;
+
+        line-height: 1.7;
+    }
+
+
+    .hero-buttons {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 12px;
+
+        margin-top: 32px;
+    }
+
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+
+    /* INTRO */
+
+    .intro-section {
+        padding: 90px 0;
+    }
+
+
+    .intro-grid {
+        display: block;
+    }
+
+
+    .section-number {
+        display: block;
+
+        margin-bottom: 30px;
+    }
+
+
+    .intro-big {
+        font-size: clamp(40px,11vw,58px);
+    }
+
+
+    .intro-text {
+        margin-top: 35px;
+
+        font-size: 14px;
+    }
+
+
+    /* SOBRE */
+
+    .silver-about {
+        padding: 90px 0;
+    }
+
+
+    .about-intro h2 {
+        font-size: clamp(42px,11vw,60px);
+    }
+
+
+    .about-intro p {
+        margin-top: 25px;
+
+        font-size: 14px;
+
+        line-height: 1.8;
+    }
+
+
+    .purpose-block {
+        display: block;
+
+        margin-top: 90px;
+    }
+
+
+    .purpose-heading h2 {
+        font-size: clamp(40px,11vw,58px);
+    }
+
+
+    .purpose-text {
+        margin-top: 35px;
+    }
+
+
+    .purpose-text p {
+        font-size: 14px;
+    }
+
+
+    /* PILARES */
+
+    .pillars {
+        display: block;
+
+        margin-top: 70px;
+    }
+
+
+    .pillar,
+    .pillar:first-child {
+        min-height: auto;
+
+        padding: 30px 0;
+
+        border-right: 0;
+
+        border-bottom: 1px solid var(--border-light);
+    }
+
+
+    .pillar:last-child {
+        border-bottom: 0;
+    }
+
+
+    .pillar h3 {
+        margin-top: 30px;
+    }
+
+
+    /* QUEM SOU */
+
+    .who-section {
+        padding: 90px 0;
+    }
+
+
+    .who-header {
+        display: block;
+    }
+
+
+    .who-header h2 {
+        font-size: clamp(48px,12vw,68px);
+    }
+
+
+    .who-content {
+        display: block;
+
+        margin-top: 60px;
+    }
+
+
+    .who-highlight {
+        font-size: 35px;
+    }
+
+
+    .who-text {
+        margin-top: 50px;
+    }
+
+
+    .who-text p {
+        font-size: 14px;
+    }
+
+
+    .questions {
+        margin: 35px 0;
+
+        padding-left: 18px;
+    }
+
+
+    .questions span {
+        font-size: 16px;
+    }
+
+
+    /* CURSOS */
+
+    .courses-section {
+        padding: 90px 0;
+    }
+
+
+    .section-header {
+        display: block;
+
+        margin-bottom: 50px;
+    }
+
+
+    .section-header h2 {
+        font-size: clamp(48px,12vw,68px);
+    }
+
+
+    .section-header > p {
+        margin-top: 28px;
+
+        font-size: 14px;
+    }
+
+
+    .courses-grid {
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+
+    .courses-grid .course-card:last-child {
+        grid-column: auto;
+
+        max-width: none;
+    }
+
+
+    .course-image {
+        min-height: 270px;
+    }
+
+
+    .course-content {
+        padding: 25px;
+    }
+
+
+    .course-content h3 {
+        font-size: 28px;
+    }
+
+
+    .course-price strong {
+        font-size: 25px;
+    }
+
+
+    /* COMO FUNCIONA */
+
+    .how-section {
+        padding: 90px 0;
+    }
+
+
+    .how-grid {
+        display: block;
+    }
+
+
+    .how-card,
+    .how-card:first-child {
+        min-height: auto;
+
+        padding: 30px 0;
+
+        border-right: 0;
+
+        border-bottom: 1px solid var(--border-light);
+    }
+
+
+    .how-card:last-child {
+        border-bottom: 0;
+    }
+
+
+    .how-card h3 {
+        margin-top: 35px;
+    }
+
+
+    /* ÁREA DO ALUNO */
+
+    .student-section {
+        padding: 60px 0;
+    }
+
+
+    .student-box {
+        display: block;
+    }
+
+
+    .student-content {
+        padding: 45px 30px;
+    }
+
+
+    .student-content h2 {
+        font-size: clamp(45px,12vw,65px);
+    }
+
+
+    .student-interface {
+        min-height: 300px;
+
+        border-left: 0;
+
+        border-top: 1px solid var(--border-dark);
+    }
+
+
+    .interface-title {
+        left: 30px;
+        bottom: 30px;
+    }
+
+
+    .interface-title strong {
+        font-size: 100px;
+    }
+
+
+    /* FAQ */
+
+    .faq-section {
+        padding: 90px 0;
+    }
+
+
+    .faq-item {
+        grid-template-columns: 1fr 20px;
+
+        gap: 15px;
+
+        padding: 25px 0;
+    }
+
+
+    .faq-item > div {
+        gap: 15px;
+    }
+
+
+    .faq-item h3 {
+        font-size: 15px;
+    }
+
+
+    .faq-item p {
+        margin-top: 12px;
+
+        font-size: 13px;
+    }
+
+
+    /* CTA */
+
+    .final-platform-cta {
+        padding: 100px 0;
+    }
+
+
+    .final-platform-cta h2 {
+        font-size: clamp(48px,12vw,68px);
+    }
+
+
+    .final-platform-cta p {
+        font-size: 14px;
+    }
+
+
+    .final-platform-cta .btn {
+        width: 100%;
+    }
+
+
+    /* FOOTER */
+
+    footer {
+        padding: 45px 0 25px;
+    }
+
+
+    .footer-container {
+        display: block;
+    }
+
+
+    .footer-links {
+        justify-content: flex-start;
+
+        flex-wrap: wrap;
+
+        margin-top: 40px;
+
+        gap: 18px;
+    }
+
+
+    .footer-bottom {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 10px;
+
+        margin-top: 35px;
+    }
+
+}
+
+
+/* =========================================
+   CELULARES PEQUENOS
+========================================= */
+
+@media (max-width: 400px) {
+
+    .container {
+        width: calc(100% - 32px);
+    }
+
+
+    .hero-container {
+        width: calc(100% - 32px);
+    }
+
+
+    .hero h1 {
+        font-size: 46px;
+    }
+
+
+    .hero p {
+        font-size: 14px;
+    }
+
+
+    .course-image {
+        min-height: 240px;
+    }
+
+
+    .student-content {
+        padding: 40px 24px;
+    }
+
+}

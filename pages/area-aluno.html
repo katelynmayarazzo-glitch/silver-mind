@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Área do Aluno | Silver Mind</title>
+
+    <link rel="icon" type="image/png" href="/assets/logo.png">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+
+    <style>
+        /* ==============================
+           ÁREA DO ALUNO
+        ============================== */
+
+        .student-page {
+            min-height: 100vh;
+            background: #080808;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .student-layout {
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* ==============================
+           SIDEBAR
+        ============================== */
+
+        .student-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 245px;
+            padding: 30px 22px;
+            background: #111111;
+            border-right: 1px solid rgba(255, 255, 255, .09);
+            display: flex;
+            flex-direction: column;
+            z-index: 20;
+        }
+
+        .student-logo {
+            width: 135px;
+            height: auto;
+            margin: 0 0 55px 10px;
+        }
+
+        .student-menu-title {
+            margin: 0 0 15px 10px;
+            color: #5f666b;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .student-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .student-menu a {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 13px 12px;
+            color: #8f969b;
+            text-decoration: none;
+            font-size: 13px;
+            transition: .3s ease;
+        }
+
+        .student-menu a:hover,
+        .student-menu a.active {
+            color: #fff;
+            background: #1c1c1c;
+        }
+
+        .menu-icon {
+            width: 18px;
+            color: #70787d;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .student-menu a.active .menu-icon {
+            color: #c8cdd1;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+        }
+
+        .sidebar-user {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 18px 10px;
+            border-top: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .user-avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #7c868f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #111;
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .user-info {
+            min-width: 0;
+        }
+
+        .user-name {
+            margin: 0 0 3px;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .user-email {
+            margin: 0;
+            color: #62696e;
+            font-size: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* ==============================
+           CONTEÚDO
+        ============================== */
+
+        .student-content-area {
+            width: calc(100% - 245px);
+            margin-left: 245px;
+            min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at 85% 10%,
+                    rgba(124, 134, 143, .08),
+                    transparent 28%
+                ),
+                #080808;
+        }
+
+        .student-topbar {
+            height: 82px;
+            padding: 0 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .topbar-title {
+            color: #777e83;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+        }
+
+        .topbar-help {
+            color: #737a7f;
+            font-size: 12px;
+            text-decoration: none;
+            transition: .3s ease;
+            cursor: pointer;
+        }
+
+        .topbar-help:hover {
+            color: #fff;
+        }
+
+        /* ==============================
+           MAIN
+        ============================== */
+
+        .student-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 50px 80px;
+        }
+
+        /* ==============================
+           WELCOME
+        ============================== */
+
+        .welcome-section {
+            position: relative;
+            padding: 50px;
+            margin-bottom: 55px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #1a1a1a 0%,
+                    #111111 60%,
+                    #0d0d0d 100%
+                );
+            border: 1px solid rgba(255, 255, 255, .10);
+            overflow: hidden;
+        }
+
+        .welcome-section::before {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            right: -120px;
+            top: -130px;
+            border: 1px solid rgba(255, 255, 255, .07);
+            transform: rotate(45deg);
+        }
+
+        .welcome-section::after {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            right: -80px;
+            top: -90px;
+            border: 1px solid rgba(255, 255, 255, .05);
+            transform: rotate(45deg);
+        }
+
+        .welcome-content {
+            position: relative;
+            z-index: 2;
+            max-width: 650px;
+        }
+
+        .welcome-eyebrow {
+            display: block;
+            margin-bottom: 15px;
+            color: #7c868f;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+        }
+
+        .welcome-content h1 {
+            margin: 0 0 15px;
+            color: #fff;
+            font-size: clamp(38px, 5vw, 58px);
+            line-height: 1;
+            font-weight: 500;
+            letter-spacing: -2px;
+        }
+
+        .welcome-content h1 span {
+            color: #7c868f;
+        }
+
+        .welcome-content p {
+            max-width: 570px;
+            margin: 0;
+            color: #8c9398;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* ==============================
+           SEÇÃO
+        ============================== */
+
+        .student-section-header {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+
+        .student-section-header h2 {
+            margin: 0;
+            color: #fff;
+            font-size: 27px;
+            font-weight: 500;
+            letter-spacing: -.7px;
+        }
+
+        .student-section-header a {
+            color: #777e83;
+            font-size: 11px;
+            text-decoration: none;
+        }
+
+        .student-section-header a:hover {
+            color: #fff;
+        }
+
+        /* ==============================
+           CURSO
+        ============================== */
+
+        .student-course {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            background: #111111;
+            border: 1px solid rgba(255, 255, 255, .09);
+            transition: .3s ease;
+        }
+
+        .student-course:hover {
+            border-color: rgba(255, 255, 255, .18);
+        }
+
+        .course-thumb {
+            position: relative;
+            min-height: 245px;
+            background:
+                linear-gradient(
+                    145deg,
+                    #303030,
+                    #161616 65%,
+                    #0d0d0d
+                );
+            overflow: hidden;
+        }
+
+        .course-thumb::before {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            right: -65px;
+            top: -65px;
+            border: 1px solid rgba(255, 255, 255, .10);
+            transform: rotate(45deg);
+        }
+
+        .course-thumb::after {
+            content: "";
+            position: absolute;
+            width: 130px;
+            height: 130px;
+            left: -55px;
+            bottom: -55px;
+            border: 1px solid rgba(255, 255, 255, .08);
+            transform: rotate(45deg);
+        }
+
+        .course-thumb-content {
+            position: absolute;
+            left: 28px;
+            bottom: 25px;
+            z-index: 2;
+        }
+
+        .course-thumb-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #9da4a9;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .course-thumb-title {
+            color: #fff;
+            font-size: 25px;
+            font-weight: 500;
+        }
+
+        .course-details {
+            padding: 35px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .course-details-small {
+            margin: 0 0 9px;
+            color: #7c868f;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        .course-details h3 {
+            margin: 0 0 12px;
+            color: #fff;
+            font-size: 26px;
+            font-weight: 500;
+        }
+
+        .course-details p {
+            max-width: 600px;
+            margin: 0 0 25px;
+            color: #858c91;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        /* ==============================
+           PROGRESSO
+        ============================== */
+
+        .progress-area {
+            max-width: 620px;
+        }
+
+        .progress-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .progress-info span {
+            color: #737a7f;
+            font-size: 10px;
+        }
+
+        .progress-percent {
+            color: #c8cdd1 !important;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #292929;
+        }
+
+        .progress-fill {
+            width: 25%;
+            height: 100%;
+            background: #7c868f;
+        }
+
+        .continue-button {
+            width: fit-content;
+            margin-top: 25px;
+            padding: 13px 22px;
+            background: #f1f1f1;
+            color: #111;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 700;
+            transition: .3s ease;
+        }
+
+        .continue-button:hover {
+            background: #7c868f;
+            color: #fff;
+        }
+
+        /* ==============================
+           CARDS INFERIORES
+        ============================== */
+
+        .student-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 55px;
+        }
+
+        .student-info-card {
+            padding: 28px;
+            background: #111111;
+            border: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .info-number {
+            display: block;
+            margin-bottom: 20px;
+            color: #7c868f;
+            font-size: 24px;
+            font-weight: 400;
+        }
+
+        .student-info-card h3 {
+            margin: 0 0 8px;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .student-info-card p {
+            margin: 0;
+            color: #70777c;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        /* ==============================
+           MOBILE
+        ============================== */
+
+        .mobile-menu-button {
+            display: none;
+        }
+
+        @media (max-width: 900px) {
+
+            .student-sidebar {
+                width: 210px;
+            }
+
+            .student-content-area {
+                width: calc(100% - 210px);
+                margin-left: 210px;
+            }
+
+            .student-topbar {
+                padding: 0 30px;
+            }
+
+            .student-main {
+                padding: 40px 30px 60px;
+            }
+
+            .welcome-section {
+                padding: 40px 35px;
+            }
+
+            .student-course {
+                grid-template-columns: 230px 1fr;
+            }
+
+            .course-details {
+                padding: 28px;
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            .student-sidebar {
+                display: none;
+            }
+
+            .student-content-area {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .student-topbar {
+                height: 70px;
+                padding: 0 20px;
+            }
+
+            .mobile-menu-button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 38px;
+                height: 38px;
+                background: #171717;
+                border: 1px solid rgba(255, 255, 255, .10);
+                color: #fff;
+                font-size: 16px;
+            }
+
+            .student-main {
+                padding: 25px 15px 50px;
+            }
+
+            .welcome-section {
+                padding: 35px 25px;
+                margin-bottom: 40px;
+            }
+
+            .welcome-content h1 {
+                font-size: 40px;
+            }
+
+            .student-section-header h2 {
+                font-size: 23px;
+            }
+
+            .student-course {
+                grid-template-columns: 1fr;
+            }
+
+            .course-thumb {
+                min-height: 190px;
+            }
+
+            .course-details {
+                padding: 28px 24px 30px;
+            }
+
+            .course-details h3 {
+                font-size: 23px;
+            }
+
+            .student-grid {
+                grid-template-columns: 1fr;
+                margin-top: 40px;
+            }
+        }
+    </style>
+</head>
+
+
+<body class="student-page">
+
+    <div class="student-layout">
+
+        <!-- ==============================
+             MENU LATERAL
+        ============================== -->
+
+        <aside class="student-sidebar">
+
+            <a href="/">
+                <img
+                    src="/assets/logo.png"
+                    alt="Silver Mind"
+                    class="student-logo"
+                >
+            </a>
+
+            <span class="student-menu-title">
+                MINHA PLATAFORMA
+            </span>
+
+            <nav class="student-menu">
+
+                <a href="/aluno" class="active">
+                    <span class="menu-icon">◈</span>
+                    Início
+                </a>
+
+                <a href="/pages/meus-cursos.html">
+                    <span class="menu-icon">▣</span>
+                    Meus cursos
+                </a>
+
+                <a href="/pages/progresso.html">
+                    <span class="menu-icon">◷</span>
+                    Meu progresso
+                </a>
+
+                <a href="/pages/perfil.html">
+                    <span class="menu-icon">○</span>
+                    Meu perfil
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="sidebar-user">
+
+                    <div class="user-avatar" id="userAvatar">
+                        A
+                    </div>
+
+                    <div class="user-info">
+
+                        <p class="user-name" id="userName">
+                            Carregando...
+                        </p>
+
+                        <p class="user-email" id="userEmail">
+                            Carregando...
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- ==============================
+             CONTEÚDO
+        ============================== -->
+
+        <div class="student-content-area">
+
+            <header class="student-topbar">
+
+                <button class="mobile-menu-button">
+                    ☰
+                </button>
+
+                <span class="topbar-title">
+                    ÁREA DO ALUNO
+                </span>
+
+                <a href="#" class="topbar-help" id="logoutButton">
+                    Sair
+                </a>
+
+            </header>
+
+
+            <main class="student-main">
+
+                <!-- ==============================
+                     BOAS-VINDAS
+                ============================== -->
+
+                <section class="welcome-section">
+
+                    <div class="welcome-content">
+
+                        <span class="welcome-eyebrow">
+                            BEM-VINDO À SILVER MIND
+                        </span>
+
+                        <h1>
+                            Sua jornada
+                            <span>começa aqui.</span>
+                        </h1>
+
+                        <p>
+                            Continue de onde parou, acompanhe seu progresso
+                            e aproveite seus conteúdos dentro da Silver Mind.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==============================
+                     MEUS CURSOS
+                ============================== -->
+
+                <section>
+
+                    <div class="student-section-header">
+
+                        <h2>
+                            Continue aprendendo.
+                        </h2>
+
+                        <a href="/pages/meus-cursos.html">
+                            Ver meus cursos →
+                        </a>
+
+                    </div>
+
+
+                    <article class="student-course">
+
+                        <div class="course-thumb">
+
+                            <div class="course-thumb-content">
+
+                                <span class="course-thumb-label">
+                                    PRIMEIRO NÍVEL
+                                </span>
+
+                                <span class="course-thumb-title">
+                                    Silver Mind
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="course-details">
+
+                            <span class="course-details-small">
+                                SEU CURSO
+                            </span>
+
+                            <h3>
+                                Primeiro nível.
+                            </h3>
+
+                            <p>
+                                Continue sua jornada de aprendizado dentro da
+                                Silver Mind e avance pelas próximas aulas.
+                            </p>
+
+
+                            <div class="progress-area">
+
+                                <div class="progress-info">
+
+                                    <span>
+                                        Progresso do curso
+                                    </span>
+
+                                    <span class="progress-percent">
+                                        25%
+                                    </span>
+
+                                </div>
+
+                                <div class="progress-bar">
+                                    <div class="progress-fill"></div>
+                                </div>
+
+                            </div>
+
+
+                            <a href="/pages/curso.html" class="continue-button">
+                                Continuar estudando →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </section>
+
+
+                <!-- ==============================
+                     INFORMAÇÕES
+                ============================== -->
+
+                <div class="student-grid">
+
+                    <article class="student-info-card">
+
+                        <span class="info-number">
+                            01
+                        </span>
+
+                        <h3>
+                            Cursos
+                        </h3>
+
+                        <p>
+                            Acesse todos os cursos disponíveis para sua conta.
+                        </p>
+
+                    </article>
+
+
+                    <article class="student-info-card">
+
+                        <span class="info-number">
+                            25%
+                        </span>
+
+                        <h3>
+                            Seu progresso
+                        </h3>
+
+                        <p>
+                            Acompanhe o quanto você já avançou em sua jornada.
+                        </p>
+
+                    </article>
+
+
+                    <article class="student-info-card">
+
+                        <span class="info-number">
+                            ∞
+                        </span>
+
+                        <h3>
+                            Seu aprendizado
+                        </h3>
+
+                        <p>
+                            Volte quando quiser e continue exatamente de onde parou.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </main>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==============================
+         FUNCIONALIDADES
+    ============================== -->
+
+    <script>
+
+        // Carrega os dados do aluno logado
+        async function carregarUsuario() {
+
+            try {
+
+                const resposta = await fetch("/api/usuario");
+                const usuario = await resposta.json();
+
+                if (!usuario.logado) {
+                    window.location.href = "/pages/login.html";
+                    return;
+                }
+
+                const nome = usuario.nome || "Aluno";
+
+                document.getElementById("userName").textContent = nome;
+                document.getElementById("userEmail").textContent = usuario.email || "";
+
+                // Primeira letra do nome no avatar
+                document.getElementById("userAvatar").textContent =
+                    nome.charAt(0).toUpperCase();
+
+            } catch (erro) {
+
+                console.error("Erro ao carregar usuário:", erro);
+
+            }
+
+        }
+
+
+        // Sair da conta
+        document.getElementById("logoutButton").addEventListener("click", async function (event) {
+
+            event.preventDefault();
+
+            try {
+
+                await fetch("/api/logout");
+
+                window.location.href = "/pages/login.html";
+
+            } catch (erro) {
+
+                console.error("Erro ao sair:", erro);
+
+            }
+
+        });
+
+
+        carregarUsuario();
+
+    </script>
+
+</body>
+
+</html>

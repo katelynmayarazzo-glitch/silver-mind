@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Curso | Silver Mind</title>
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="../assets/logo.png"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/responsive.css"
+    >
+
+    <style>
+
+        /* =====================================
+           PÁGINA DO CURSO
+        ====================================== */
+
+        .course-page {
+            background: var(--white);
+            color: var(--black);
+        }
+
+
+        /* =====================================
+           TOPO DO CURSO
+        ====================================== */
+
+        .course-hero {
+            min-height: 78vh;
+
+            display: flex;
+            align-items: center;
+
+            padding: 150px 0 100px;
+
+            background:
+                radial-gradient(
+                    circle at 85% 50%,
+                    rgba(124,134,143,.20),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #080808 0%,
+                    #111111 60%,
+                    #1b1e20 100%
+                );
+
+            color: var(--white);
+        }
+
+
+        .course-hero-grid {
+            display: grid;
+
+            grid-template-columns: 1.2fr .8fr;
+
+            gap: 80px;
+
+            align-items: center;
+        }
+
+
+        .course-hero-content {
+            max-width: 720px;
+        }
+
+
+        .course-label {
+            display: inline-block;
+
+            margin-bottom: 25px;
+
+            font-size: 10px;
+            font-weight: 700;
+
+            letter-spacing: .22em;
+            text-transform: uppercase;
+
+            color: var(--silver);
+        }
+
+
+        .course-hero h1 {
+            font-size: clamp(60px, 7vw, 105px);
+
+            line-height: .88;
+
+            letter-spacing: -.075em;
+        }
+
+
+        .course-hero-description {
+            max-width: 600px;
+
+            margin-top: 30px;
+
+            font-size: 16px;
+
+            line-height: 1.8;
+
+            color: rgba(255,255,255,.65);
+        }
+
+
+        .course-hero-buttons {
+            display: flex;
+
+            gap: 14px;
+
+            margin-top: 38px;
+        }
+
+
+        /* =====================================
+           VISUAL DO CURSO
+        ====================================== */
+
+        .course-cover {
+            min-height: 450px;
+
+            display: flex;
+            align-items: flex-end;
+
+            padding: 35px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            border: 1px solid rgba(255,255,255,.14);
+
+            background:
+                radial-gradient(
+                    circle at 70% 30%,
+                    #d9dde0 0%,
+                    #89939a 24%,
+                    #343a3e 58%,
+                    #0b0b0b 100%
+                );
+        }
+
+
+        .course-cover::before {
+            content: "";
+
+            position: absolute;
+
+            width: 320px;
+            height: 320px;
+
+            top: 55px;
+            right: -100px;
+
+            border: 1px solid rgba(255,255,255,.25);
+
+            border-radius: 50%;
+        }
+
+
+        .course-cover::after {
+            content: "";
+
+            position: absolute;
+
+            width: 190px;
+            height: 190px;
+
+            top: 120px;
+            right: -35px;
+
+            border: 1px solid rgba(255,255,255,.18);
+
+            border-radius: 50%;
+        }
+
+
+        .cover-text {
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .cover-text small {
+            display: block;
+
+            margin-bottom: 10px;
+
+            font-size: 9px;
+
+            letter-spacing: .2em;
+            text-transform: uppercase;
+
+            color: rgba(255,255,255,.65);
+        }
+
+
+        .cover-text strong {
+            display: block;
+
+            max-width: 300px;
+
+            font-size: 38px;
+
+            line-height: .95;
+
+            letter-spacing: -.05em;
+        }
+
+
+        /* =====================================
+           INFORMAÇÕES
+        ====================================== */
+
+        .course-info {
+            padding: 120px 0;
+        }
+
+
+        .course-info-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 100px;
+        }
+
+
+        .course-info h2 {
+            max-width: 650px;
+
+            font-size: clamp(45px, 5vw, 70px);
+
+            line-height: .95;
+
+            letter-spacing: -.055em;
+        }
+
+
+        .course-info-text p {
+            max-width: 550px;
+
+            margin-bottom: 22px;
+
+            font-size: 15px;
+
+            line-height: 1.85;
+
+            color: var(--gray-dark);
+        }
+
+
+        /* =====================================
+           O QUE VOCÊ VAI APRENDER
+        ====================================== */
+
+        .learning-section {
+            padding: 120px 0;
+
+            background: var(--white-soft);
+        }
+
+
+        .learning-header {
+            display: grid;
+
+            grid-template-columns: 100px 1fr;
+
+            gap: 50px;
+
+            margin-bottom: 70px;
+        }
+
+
+        .learning-header h2 {
+            max-width: 750px;
+
+            font-size: clamp(45px, 5vw, 70px);
+
+            line-height: .95;
+
+            letter-spacing: -.055em;
+        }
+
+
+        .learning-list {
+            border-top: 1px solid var(--border-light);
+        }
+
+
+        .learning-item {
+            display: grid;
+
+            grid-template-columns: 80px 1fr;
+
+            gap: 30px;
+
+            padding: 30px 0;
+
+            border-bottom: 1px solid var(--border-light);
+        }
+
+
+        .learning-number {
+            font-size: 10px;
+            font-weight: 700;
+
+            letter-spacing: .18em;
+
+            color: var(--gray-logo);
+        }
+
+
+        .learning-item h3 {
+            font-size: 20px;
+
+            letter-spacing: -.025em;
+        }
+
+
+        .learning-item p {
+            max-width: 650px;
+
+            margin-top: 10px;
+
+            font-size: 13px;
+
+            line-height: 1.8;
+
+            color: var(--gray-dark);
+        }
+
+
+        /* =====================================
+           PARA QUEM É
+        ====================================== */
+
+        .audience-section {
+            padding: 120px 0;
+
+            background: var(--white);
+        }
+
+
+        .audience-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 80px;
+        }
+
+
+        .audience-title h2 {
+            max-width: 600px;
+
+            font-size: clamp(45px, 5vw, 70px);
+
+            line-height: .95;
+
+            letter-spacing: -.055em;
+        }
+
+
+        .audience-list {
+            border-top: 1px solid var(--border-light);
+        }
+
+
+        .audience-item {
+            padding: 24px 0;
+
+            border-bottom: 1px solid var(--border-light);
+
+            font-size: 15px;
+
+            line-height: 1.6;
+
+            color: var(--gray-dark);
+        }
+
+
+        /* =====================================
+           CTA DO CURSO
+        ====================================== */
+
+        .course-buy {
+            padding: 130px 0;
+
+            background: var(--black);
+
+            color: var(--white);
+
+            text-align: center;
+        }
+
+
+        .course-buy h2 {
+            max-width: 800px;
+
+            margin: 0 auto;
+
+            font-size: clamp(55px, 7vw, 95px);
+
+            line-height: .9;
+
+            letter-spacing: -.07em;
+        }
+
+
+        .course-buy p {
+            max-width: 500px;
+
+            margin: 30px auto 0;
+
+            font-size: 15px;
+
+            line-height: 1.8;
+
+            color: var(--gray);
+        }
+
+
+        .course-buy .btn {
+            margin-top: 35px;
+        }
+
+
+        /* =====================================
+           VOLTAR
+        ====================================== */
+
+        .back-course {
+            padding: 25px 0;
+
+            background: var(--black);
+
+            border-top: 1px solid var(--border-dark);
+
+            color: var(--gray);
+        }
+
+
+        .back-course a {
+            font-size: 9px;
+            font-weight: 700;
+
+            letter-spacing: .16em;
+
+            text-transform: uppercase;
+
+            transition: color .2s ease;
+        }
+
+
+        .back-course a:hover {
+            color: var(--white);
+        }
+
+
+        /* =====================================
+           RESPONSIVO DA PÁGINA
+        ====================================== */
+
+        @media (max-width: 900px) {
+
+            .course-hero-grid,
+            .course-info-grid,
+            .audience-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .course-cover {
+                min-height: 380px;
+            }
+
+
+            .learning-header {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+
+            .course-info-grid,
+            .audience-grid {
+                gap: 60px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .course-hero {
+                min-height: auto;
+
+                padding: 140px 0 80px;
+            }
+
+
+            .course-hero h1 {
+                font-size: 55px;
+            }
+
+
+            .course-hero-description {
+                font-size: 14px;
+            }
+
+
+            .course-hero-buttons {
+                flex-direction: column;
+            }
+
+
+            .course-hero-buttons .btn {
+                width: 100%;
+            }
+
+
+            .course-cover {
+                min-height: 300px;
+
+                padding: 25px;
+            }
+
+
+            .cover-text strong {
+                font-size: 30px;
+            }
+
+
+            .course-info,
+            .learning-section,
+            .audience-section {
+                padding: 85px 0;
+            }
+
+
+            .course-info h2,
+            .learning-header h2,
+            .audience-title h2 {
+                font-size: 45px;
+            }
+
+
+            .learning-item {
+                grid-template-columns: 45px 1fr;
+
+                gap: 18px;
+            }
+
+
+            .learning-item h3 {
+                font-size: 18px;
+            }
+
+
+            .course-buy {
+                padding: 100px 0;
+            }
+
+
+            .course-buy h2 {
+                font-size: 52px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body class="course-page">
+
+
+    <!-- =====================================
+         HEADER
+    ====================================== -->
+
+    <header class="site-header">
+
+        <div class="container header-container">
+
+            <a href="../index.html">
+
+                <img
+                    src="../assets/logo.png"
+                    alt="Silver Mind"
+                    class="site-logo"
+                >
+
+            </a>
+
+
+            <nav class="main-nav">
+
+                <a href="../index.html#sobre">
+                    Sobre
+                </a>
+
+                <a href="../index.html#cursos">
+                    Cursos
+                </a>
+
+                <a href="../index.html#faq">
+                    FAQ
+                </a>
+
+                <a href="#" class="nav-login">
+                    Entrar
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+
+    <main>
+
+
+        <!-- =====================================
+             HERO DO CURSO
+        ====================================== -->
+
+        <section class="course-hero">
+
+            <div class="container">
+
+                <div class="course-hero-grid">
+
+
+                    <div class="course-hero-content">
+
+                        <span class="course-label">
+                            SILVER MIND · CURSO
+                        </span>
+
+
+                        <h1>
+                            Primeiro nível.
+                        </h1>
+
+
+                        <p class="course-hero-description">
+                            Uma experiência de aprendizado criada
+                            para quem deseja começar uma nova
+                            jornada, desenvolver conhecimentos e
+                            abrir espaço para novas possibilidades.
+                        </p>
+
+
+                        <div class="course-hero-buttons">
+
+                            <a
+                                href="#inscricao"
+                                class="btn btn-primary"
+                            >
+                                Quero fazer o curso
+                            </a>
+
+
+                            <a
+                                href="#conteudo"
+                                class="btn btn-secondary"
+                            >
+                                Ver conteúdo
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="course-cover">
+
+                        <div class="cover-text">
+
+                            <small>
+                                SILVER MIND
+                            </small>
+
+                            <strong>
+                                Primeiro
+                                nível.
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             INFORMAÇÕES
+        ====================================== -->
+
+        <section class="course-info">
+
+            <div class="container">
+
+                <div class="course-info-grid">
+
+
+                    <div>
+
+                        <span class="dark-eyebrow">
+                            SOBRE O CURSO
+                        </span>
+
+
+                        <h2>
+                            Um primeiro passo
+                            pode mudar o caminho.
+                        </h2>
+
+                    </div>
+
+
+                    <div class="course-info-text">
+
+                        <p>
+                            Este curso foi pensado como uma
+                            porta de entrada para uma nova
+                            experiência de aprendizado.
+                        </p>
+
+
+                        <p>
+                            Aqui, você terá acesso a conteúdos
+                            organizados de forma simples,
+                            permitindo que cada etapa seja
+                            acompanhada no seu próprio ritmo.
+                        </p>
+
+
+                        <p>
+                            O conteúdo oficial desta formação
+                            será inserido posteriormente com
+                            as informações fornecidas pela
+                            Silver Mind.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             CONTEÚDO
+        ====================================== -->
+
+        <section
+            class="learning-section"
+            id="conteudo"
+        >
+
+            <div class="container">
+
+                <div class="learning-header">
+
+                    <span class="section-number">
+                        01
+                    </span>
+
+
+                    <h2>
+                        O que você
+                        vai encontrar.
+                    </h2>
+
+                </div>
+
+
+
+                <div class="learning-list">
+
+
+                    <div class="learning-item">
+
+                        <span class="learning-number">
+                            01
+                        </span>
+
+
+                        <div>
+
+                            <h3>
+                                Introdução
+                            </h3>
+
+                            <p>
+                                Conheça os primeiros conceitos
+                                e prepare-se para começar sua
+                                jornada.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="learning-item">
+
+                        <span class="learning-number">
+                            02
+                        </span>
+
+
+                        <div>
+
+                            <h3>
+                                Fundamentos
+                            </h3>
+
+                            <p>
+                                Desenvolva uma base sólida para
+                                avançar pelos próximos conteúdos.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="learning-item">
+
+                        <span class="learning-number">
+                            03
+                        </span>
+
+
+                        <div>
+
+                            <h3>
+                                Desenvolvimento
+                            </h3>
+
+                            <p>
+                                Transforme o conhecimento adquirido
+                                em novas possibilidades.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="learning-item">
+
+                        <span class="learning-number">
+                            04
+                        </span>
+
+
+                        <div>
+
+                            <h3>
+                                Próximos passos
+                            </h3>
+
+                            <p>
+                                Continue sua jornada de aprendizado
+                                dentro da Silver Mind.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             PARA QUEM É
+        ====================================== -->
+
+        <section class="audience-section">
+
+            <div class="container">
+
+                <div class="audience-grid">
+
+
+                    <div class="audience-title">
+
+                        <span class="dark-eyebrow">
+                            PARA QUEM É
+                        </span>
+
+
+                        <h2>
+                            Para quem quer
+                            começar.
+                        </h2>
+
+                    </div>
+
+
+
+                    <div class="audience-list">
+
+                        <div class="audience-item">
+                            Para quem deseja aprender algo novo.
+                        </div>
+
+
+                        <div class="audience-item">
+                            Para quem busca desenvolvimento.
+                        </div>
+
+
+                        <div class="audience-item">
+                            Para quem quer transformar conhecimento
+                            em prática.
+                        </div>
+
+
+                        <div class="audience-item">
+                            Para quem está pronto para dar o
+                            próximo passo.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             CTA / INSCRIÇÃO
+        ====================================== -->
+
+        <section
+            class="course-buy"
+            id="inscricao"
+        >
+
+            <div class="container">
+
+                <span class="eyebrow">
+                    SILVER MIND
+                </span>
+
+
+                <h2>
+                    Comece sua
+                    jornada.
+                </h2>
+
+
+                <p>
+                    Faça parte dessa experiência e tenha
+                    acesso ao conteúdo do curso dentro
+                    da plataforma Silver Mind.
+                </p>
+
+
+                <a
+                    href="#"
+                    class="btn btn-primary"
+                >
+                    Quero fazer o curso
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             VOLTAR
+        ====================================== -->
+
+        <div class="back-course">
+
+            <div class="container">
+
+                <a href="../index.html#cursos">
+                    ← Voltar para cursos
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =====================================
+         JAVASCRIPT
+    ====================================== -->
+
+    <script src="../js/script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Entrar | Silver Mind</title>
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="../assets/logo.png"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/responsive.css"
+    >
+
+    <style>
+
+        /* =====================================
+           LOGIN
+        ====================================== */
+
+        .login-page {
+            min-height: 100vh;
+            background: var(--black);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .login-header {
+            padding: 28px 0;
+        }
+
+        .login-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .login-logo {
+            width: 145px;
+            height: auto;
+            display: block;
+        }
+
+        .back-home {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 14px;
+            transition: .3s ease;
+        }
+
+        .back-home:hover {
+            color: var(--white);
+        }
+
+        .login-main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 70px 20px 100px;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 470px;
+        }
+
+        .login-eyebrow {
+            display: inline-block;
+            margin-bottom: 18px;
+            color: var(--gray-logo);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .login-box h1 {
+            margin: 0 0 14px;
+            color: var(--white);
+            font-size: clamp(42px, 6vw, 64px);
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+
+        .login-description {
+            max-width: 420px;
+            margin-bottom: 42px;
+            color: var(--gray);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .form-group label {
+            color: var(--white);
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 17px 18px;
+            border: 1px solid var(--border-dark);
+            border-radius: 2px;
+            outline: none;
+            background: var(--black-card);
+            color: var(--white);
+            font-family: inherit;
+            font-size: 15px;
+            transition: .3s ease;
+        }
+
+        .form-group input::placeholder {
+            color: var(--gray-dark);
+        }
+
+        .form-group input:focus {
+            border-color: var(--gray-logo);
+        }
+
+        .password-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .forgot-password {
+            color: var(--gray);
+            font-size: 12px;
+            text-decoration: none;
+            transition: .3s ease;
+        }
+
+        .forgot-password:hover {
+            color: var(--white);
+        }
+
+        .login-button {
+            width: 100%;
+            margin-top: 8px;
+            border: none;
+            cursor: pointer;
+            justify-content: center;
+        }
+
+        .login-button:disabled {
+            opacity: .65;
+            cursor: wait;
+        }
+
+        /* =====================================
+           MENSAGEM
+        ====================================== */
+
+        .login-feedback {
+            display: none;
+
+            margin-top: 15px;
+            padding: 12px 14px;
+
+            font-size: 12px;
+            line-height: 1.5;
+
+            border: 1px solid transparent;
+        }
+
+        .login-feedback.success {
+            display: block;
+            color: #315f3a;
+            background: #e8f3ea;
+            border-color: #b9d8be;
+        }
+
+        .login-feedback.error {
+            display: block;
+            color: #8a3030;
+            background: #f8eaea;
+            border-color: #e0bcbc;
+        }
+
+        /* =====================================
+           CADASTRO
+        ====================================== */
+
+        .login-register {
+            margin-top: 28px;
+            text-align: center;
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        .login-register a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-register a:hover {
+            text-decoration: underline;
+        }
+
+        .login-footer {
+            padding: 25px 20px;
+            text-align: center;
+            color: var(--gray-dark);
+            font-size: 12px;
+        }
+
+        @media (max-width: 600px) {
+
+            .login-header {
+                padding: 22px 0;
+            }
+
+            .login-logo {
+                width: 125px;
+            }
+
+            .back-home {
+                font-size: 12px;
+            }
+
+            .login-main {
+                padding: 45px 20px 70px;
+            }
+
+            .login-box h1 {
+                font-size: 46px;
+            }
+
+            .login-description {
+                margin-bottom: 32px;
+                font-size: 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body class="login-page">
+
+
+    <header class="login-header">
+
+        <div class="container">
+
+            <a href="../index.html">
+
+                <img
+                    src="../assets/logo.png"
+                    alt="Silver Mind"
+                    class="login-logo"
+                >
+
+            </a>
+
+            <a
+                href="../index.html"
+                class="back-home"
+            >
+                Voltar para o início
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <main class="login-main">
+
+        <div class="login-box">
+
+            <span class="login-eyebrow">
+                ÁREA DO ALUNO
+            </span>
+
+            <h1>
+                Bem-vindo.
+            </h1>
+
+            <p class="login-description">
+                Entre na sua conta para acessar seus
+                cursos, acompanhar suas aulas e continuar
+                sua jornada na Silver Mind.
+            </p>
+
+
+            <form
+                class="login-form"
+                id="loginForm"
+            >
+
+                <div class="form-group">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="seuemail@email.com"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <div class="password-row">
+
+                        <label for="password">
+                            Senha
+                        </label>
+
+                        <a
+                            href="#"
+                            class="forgot-password"
+                            id="forgotPassword"
+                        >
+                            Esqueci minha senha
+                        </a>
+
+                    </div>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Digite sua senha"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary login-button"
+                    id="loginButton"
+                >
+                    Entrar na plataforma
+                </button>
+
+
+                <div
+                    id="loginFeedback"
+                    class="login-feedback"
+                ></div>
+
+            </form>
+
+
+            <div class="login-register">
+
+                Ainda não possui uma conta?
+
+                <a href="cadastro.html">
+                    Criar minha conta
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <footer class="login-footer">
+        ©️ 2026 Silver Mind
+    </footer>
+
+
+    <!-- =====================================
+         LOGIN - JAVASCRIPT
+    ====================================== -->
+
+    <script>
+
+        const loginForm = document.getElementById("loginForm");
+        const loginButton = document.getElementById("loginButton");
+        const loginFeedback = document.getElementById("loginFeedback");
+
+        loginForm.addEventListener("submit", async function (event) {
+
+            event.preventDefault();
+
+            const email = document.getElementById("email").value.trim();
+            const senha = document.getElementById("password").value;
+
+            loginFeedback.className = "login-feedback";
+            loginFeedback.textContent = "";
+
+            loginButton.disabled = true;
+            loginButton.textContent = "Entrando...";
+
+            try {
+
+                const resposta = await fetch("/api/login", {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        email: email,
+                        senha: senha
+                    })
+
+                });
+
+                const dados = await resposta.json();
+
+                if (dados.sucesso) {
+
+                    loginFeedback.textContent =
+                        "Login realizado com sucesso!";
+
+                    loginFeedback.className =
+                        "login-feedback success";
+
+                    setTimeout(function () {
+
+                        window.location.href = "/aluno";
+
+                    }, 700);
+
+                } else {
+
+                    loginFeedback.textContent = dados.mensagem;
+
+                    loginFeedback.className =
+                        "login-feedback error";
+
+                    loginButton.disabled = false;
+                    loginButton.textContent =
+                        "Entrar na plataforma";
+                }
+
+            } catch (erro) {
+
+                loginFeedback.textContent =
+                    "Não foi possível conectar ao sistema. Verifique se o Flask está funcionando.";
+
+                loginFeedback.className =
+                    "login-feedback error";
+
+                loginButton.disabled = false;
+                loginButton.textContent =
+                    "Entrar na plataforma";
+            }
+
+        });
+
+
+        /* =====================================
+           ESQUECI MINHA SENHA
+        ====================================== */
+
+        document.getElementById("forgotPassword")
+            .addEventListener("click", function (event) {
+
+                event.preventDefault();
+
+                alert(
+                    "A recuperação de senha será configurada na próxima etapa."
+                );
+
+            });
+
+    </script>
+
+</body>
+
+</html>
